@@ -6,7 +6,13 @@ var init = function() {
   //they should all be named like side0.png, side1.png, side2.png, etc
   var totalImages = 4;
   var currentlyFront = true;
+  var flipInProgress = false;
   document.getElementById('flip-button').addEventListener( 'click', function(){
+    if(flipInProgress) {
+       return;
+    }
+    flipInProgress = true;
+    setTimeout(function(){ flipInProgress = false;}, 1000);
     numFlips++;
     currentImage++;
     
