@@ -1,30 +1,29 @@
-Element.prototype.hasClassName = function (a) {
-    return new RegExp("(?:^|\\s+)" + a + "(?:\\s+|$)").test(this.className);
-};
-
-Element.prototype.addClassName = function (a) {
-    if (!this.hasClassName(a)) {
-        this.className = [this.className, a].join(" ");
-    }
-};
-
-Element.prototype.removeClassName = function (b) {
-    if (this.hasClassName(b)) {
-        var a = this.className;
-        this.className = a.replace(new RegExp("(?:^|\\s+)" + b + "(?:\\s+|$)", "g"), " ");
-    }
-};
-
-Element.prototype.toggleClassName = function (a) {
-  this[this.hasClassName(a) ? "removeClassName" : "addClassName"](a);
-};
-
-
 var init = function() {
   var card = document.getElementById('card');
-  
-  document.getElementById('flip').addEventListener( 'click', function(){
-    card.toggleClassName('flipped');
+  var numFlips = 0;
+  var currentImage = 0;
+  //change this 4 to however many images get made.
+  //they should all be named like side0.png, side1.png, side2.png, etc
+  var totalImages = 4;
+  var currentlyFront = true;
+  document.getElementById('flip-button').addEventListener( 'click', function(){
+    numFlips++;
+    currentImage++;
+    
+    if (currentImage >= totalImages) {
+       currentImage = 1; // just keep cycling through the back images
+    }
+    var imgToChange;
+    if (currentlyFront) {
+       imgToChange = document.getElementById('backimg');
+       currentlyFront = false;
+    } else {
+       imgToChange = document.getElementById('frontimg');
+       currentlyFront = true;
+    }
+    imgToChange.src = "side" + currentImage + ".png";
+    
+    card.style = "transform: rotateY(" + (numFlips * -180) + "deg);";
   }, false);
 };
 
