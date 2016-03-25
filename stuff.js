@@ -4,7 +4,7 @@ var init = function() {
   var currentImage = 0;
   //change this 4 to however many images get made.
   //they should all be named like side0.png, side1.png, side2.png, etc
-  var totalImages = 4;
+  var totalImages = 9;
   var currentlyFront = true;
   var flipInProgress = false;
   document.getElementById('flip-button').addEventListener( 'click', function(){
