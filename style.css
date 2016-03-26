@@ -39,6 +39,10 @@ figure {
     background-color: #BE630E;
 }
 
+#flip-button:focus {
+    outline:none;
+}
+
 #flip-button{
   background-color: #333333;
   width:50px;
